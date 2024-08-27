@@ -1,17 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\datetimepicker\Tests\DateTimePickerTest.
- */
-
 namespace Drupal\datetimepicker\Tests;
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\simpletest\WebTestBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Tests\BrowserTestBase;
 
@@ -25,7 +18,7 @@ class DateTimePickerTest extends BrowserTestBase {
   /**
    * Modules to enable.
    *
-   * @var array
+   * @var string[]
    */
   protected static $modules = array('node', 'entity_test', 'datetime', 'datetimepicker', 'field_ui');
 

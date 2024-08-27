@@ -1,16 +1,12 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\datetimepicker\Plugin\Field\FieldWidget\DateRangeDateTimePicker.
- */
-
 namespace Drupal\datetimepicker\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime_range\Plugin\Field\FieldWidget\DateRangeDefaultWidget;
+use Drupal\datetimepicker\DateTimePickerHelper;
 
 /**
  * Plugin implementation of the 'datetimepicker_range' widget.
@@ -99,12 +95,12 @@ class DateRangeDateTimePicker extends DateRangeDefaultWidget {
       $element[$name]['#datetimepicker_settings'] = $settings;
 
       if ($settings['timepicker'] == FALSE) {
-        $element[$name]['#date_date_callbacks'][] = 'datetimepicker_element_date_callback';
+        $element[$name]['#date_date_callbacks'][] = DateTimePickerHelper::class . '::dateTimePickerDateCallback';
         $element[$name]['#date_date_element'] = 'text';
         $element[$name]['#date_time_element'] = 'none';
       }
       else {
-        $element[$name]['#date_time_callbacks'][] = 'datetimepicker_element_time_callback';
+        $element[$name]['#date_time_callbacks'][] = DateTimePickerHelper::class . '::dateTimePickerTimeCallback';
         $element[$name]['#date_date_element'] = 'text';
         $element[$name]['#date_time_element'] = 'text';
       }

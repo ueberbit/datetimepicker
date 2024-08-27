@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\datetimepicker\Plugin\Field\FieldWidget\DateComboDateTimePicker.
- */
-
 namespace Drupal\datetimepicker\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\date_combo\Plugin\Field\FieldFormatter\DateComboDefaultFormatter;
 use Drupal\date_combo\Plugin\Field\FieldWidget\DateComboDefaultWidget;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\datetimepicker\DateTimePickerHelper;
 
 /**
  * Plugin implementation of the 'datetimepicker_date_combo' widget.
@@ -106,12 +101,12 @@ class DateComboDateTimePicker extends DateComboDefaultWidget {
       $element[$name]['#datetimepicker_settings'] = $settings;
 
       if ($settings['timepicker'] == FALSE) {
-        $element[$name]['#date_date_callbacks'][] = 'datetimepicker_element_date_callback';
+        $element[$name]['#date_date_callbacks'][] = DateTimePickerHelper::class . '::dateTimePickerDateCallback';
         $element[$name]['#date_date_element'] = 'text';
         $element[$name]['#date_time_element'] = 'none';
       }
       else {
-        $element[$name]['#date_time_callbacks'][] = 'datetimepicker_element_time_callback';
+        $element[$name]['#date_time_callbacks'][] = DateTimePickerHelper::class . '::dateTimePickerTimeCallback';
         $element[$name]['#date_date_element'] = 'text';
         $element[$name]['#date_time_element'] = 'text';
       }

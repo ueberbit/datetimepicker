@@ -7,8 +7,8 @@
 
   Drupal.behaviors.datetimepicker = {
     attach: function (context, settings) {
-      $('[data-datetimepicker-widget]', context).once().each(function (i, v) {
-        var element = $(this);
+      once('datetimepicker-widget', '[data-datetimepicker-widget]', context).forEach(function (element) {
+        var element = $(element);
         element.attr('type', 'text');
 
         var element_settings = element.data('datetimepicker-settings');
